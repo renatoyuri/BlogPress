@@ -1,0 +1,40 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbarhome.ejs") %>
+<body>
+    <br>
+    <div class="container">
+        <% result.articles.rows.forEach(article => { %>
+            <a href="/<%= article.slug %>" class="card link-offset-2 link-underline link-underline-opacity-0">
+                <div class="card-header">
+                    <h5><%= article.title %></h5>
+                </div>
+                <div class="card-footer text-body-secondary text-end">
+                    <p class="getDate"><%= article.createdAt %></p>
+                </div>
+            </a>
+            <br>
+        <% }); %>
+
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <% if (result.page > 1) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/articles/page/<%= result.page - 1 %>" aria-label="Next">
+                            <span aria-hidden="true">&laquo; Anterior</span>
+                        </a>
+                    </li>
+                <% } %>
+
+                <% if (result.nextPage) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/articles/page/<%= result.page + 1 %>" aria-label="Next">
+                            <span aria-hidden="true">Proximo &raquo;</span>
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</body>
+<%- include("../../partials/footer.ejs") %>
